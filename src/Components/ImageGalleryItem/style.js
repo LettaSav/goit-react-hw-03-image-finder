@@ -18,19 +18,4 @@ const useStyles = createUseStyles({
   },
 });
 
-const ImgItem = ({ webformatURL, id, OpenModal, largeImageURL, tags }) => {
-  const classes = useStyles();
-  return (
-    <li className={classes.ImageGalleryItem}>
-      <img
-        src={webformatURL}
-        alt={tags}
-        className="ImageGalleryItem-image"
-        id={id}
-        data-source={largeImageURL}
-        onClick={OpenModal}
-      />
-    </li>
-  );
-};
-export default ImgItem;
+export default useStyles;

@@ -4,12 +4,12 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Loader from 'react-loader-spinner';
 
-import SearchBarHandler from './Components/Searchbar';
-import ImgGallery from './Components/ImageGallery';
+import SearchBarHandler from './Components/SearchBar/Searchbar';
+import ImgGallery from './Components/ImageGallery/ImageGallery';
 import fetchImg from './services/ImgApi';
-import Modal from './Components/Modal';
+import Modal from './Components/Modal/Modal';
 
-import Button from './Components/Button';
+import Button from './Components/Button/Button';
 
 function App() {
   const [largeImageURL, setLargeImageURL] = useState('');
@@ -21,8 +21,9 @@ function App() {
 
   const handleSearch = searchValue => {
     setQuery(searchValue);
+    setCurrentPage(1);
+    setImages([]);
   };
-
   const currentPageHandler = () => {
     setCurrentPage(prevState => prevState + 1);
   };
@@ -45,39 +46,25 @@ function App() {
         }),
       )
       .finally(() => setIsLoading(false));
-  }, [currentPage, query]);
-
-  React.useEffect(() => {
-    if (currentPage !== 1) {
-      setIsLoading(true);
-
-      fetchImg(query, currentPage)
-        .then(({ hits }) => {
-          setImages(prevState => [...prevState, ...hits]);
-          scroll();
-        })
-        .catch(error =>
-          toast(error.message, {
-            type: 'Something went wrong ',
-          }),
-        )
-        .finally(() => setIsLoading(false));
-    }
-  }, [currentPage, query]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   React.useEffect(() => {
     setIsLoading(true);
-    fetchImg(query, 1)
-      .then(({ hits }) => setImages(hits))
+    fetchImg(query, currentPage)
+      .then(({ hits }) => setImages(prevState => [...prevState, ...hits]))
+      .then(() => {
+        if (currentPage !== 1) {
+          scroll();
+        }
+      })
       .catch(error =>
         toast(error.message, {
           type: 'Something went wrong ',
         }),
       )
       .finally(() => setIsLoading(false));
-  }, [query]);
-
-  window.addEventListener('keydown', handleCancelModal);
+  }, [query, currentPage]);
 
   function handleCancelModal(e) {
     if (e.keyCode === 27) {

@@ -2,6 +2,7 @@ import { createUseStyles } from 'react-jss';
 
 const useStyles = createUseStyles({
   Button: {
+    margin: 'auto',
     marginTop: 10,
     marginBottom: 10,
     paddingTop: 10,
@@ -18,7 +19,7 @@ const useStyles = createUseStyles({
     textDecoration: 'none',
     cursor: 'pointer',
 
-    minWidth: 100,
+    width: 150,
     boxShadow:
       ' 0px 3px 1px -2px rgba(0, 0, 0, 0.2) 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12)',
 
@@ -31,12 +32,4 @@ const useStyles = createUseStyles({
   },
 });
 
-const Button = ({ onClick }) => {
-  const classes = useStyles();
-  return (
-    <button onClick={onClick} className={classes.Button}>
-      Load more
-    </button>
-  );
-};
-export default Button;
+export default useStyles;

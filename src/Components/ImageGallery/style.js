@@ -2,8 +2,8 @@ import { createUseStyles } from 'react-jss';
 
 const useStyles = createUseStyles({
   imageGallery: {
-    display: grid,
-    maxWidth: calc('100vw' - '48px'),
+    display: 'grid',
+    maxWidth: 'calc(100vw - 48px)',
     gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
     gridGap: 16,
     marginTop: 0,

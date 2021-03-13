@@ -6,7 +6,7 @@ const ImgGallery = ({ images, OpenModal }) => {
   const classes = useStyles();
 
   return (
-    <ul className={classes.ImageGallery}>
+    <ul className={classes.imageGallery}>
       {images.map(image => (
         <ImgItem
           key={image.id}

@@ -1,5 +1,6 @@
 import { createUseStyles } from 'react-jss';
 import { createPortal } from 'react-dom';
+import PropTypes from 'prop-types';
 
 const useStyles = createUseStyles({
   Overlay: {
@@ -22,13 +23,13 @@ const useStyles = createUseStyles({
 
 const modalRoot = document.querySelector('#modal-root');
 
-const ModalHandler = ({ largeImageURL, id }) => {
+const ModalHandler = ({ largeImageURL }) => {
   const classes = useStyles();
 
   return createPortal(
     <div className={classes.Overlay}>
       <div className={classes.Modal}>
-        <img src={largeImageURL} alt="" id={id} />
+        <img src={largeImageURL} alt="" />
       </div>
     </div>,
     modalRoot,
@@ -36,3 +37,7 @@ const ModalHandler = ({ largeImageURL, id }) => {
 };
 
 export default ModalHandler;
+
+ModalHandler.propTypes = {
+  largeImageURL: PropTypes.string.isRequired,
+};

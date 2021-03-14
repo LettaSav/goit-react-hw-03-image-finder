@@ -1,4 +1,5 @@
 import useStyles from './style';
+import PropTypes from 'prop-types';
 
 const ImgItem = ({ webformatURL, OpenModal, largeImageURL, tags }) => {
   const classes = useStyles();
@@ -15,3 +16,10 @@ const ImgItem = ({ webformatURL, OpenModal, largeImageURL, tags }) => {
   );
 };
 export default ImgItem;
+
+ImgItem.propTypes = {
+  webformatURL: PropTypes.string.isRequired,
+  tags: PropTypes.string.isRequired,
+  largeImageURL: PropTypes.string.isRequired,
+  OpenModal: PropTypes.func.isRequired,
+};

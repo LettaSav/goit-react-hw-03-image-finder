@@ -1,4 +1,5 @@
 import useStyles from './style';
+import PropTypes from 'prop-types';
 
 const Button = ({ onClick }) => {
   const classes = useStyles();
@@ -9,3 +10,7 @@ const Button = ({ onClick }) => {
   );
 };
 export default Button;
+
+Button.propTypes = {
+  onClick: PropTypes.func.isRequired,
+};

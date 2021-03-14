@@ -7,7 +7,7 @@ const ImgItem = ({ webformatURL, OpenModal, largeImageURL, tags }) => {
       <img
         src={webformatURL}
         alt={tags}
-        className="ImageGalleryItem-image"
+        className={classes.ImageGalleryItemImage}
         data-source={largeImageURL}
         onClick={OpenModal}
       />

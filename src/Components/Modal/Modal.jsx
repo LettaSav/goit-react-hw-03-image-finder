@@ -1,4 +1,5 @@
 import { createUseStyles } from 'react-jss';
+import { createPortal } from 'react-dom';
 
 const useStyles = createUseStyles({
   Overlay: {
@@ -19,14 +20,18 @@ const useStyles = createUseStyles({
   },
 });
 
+const modalRoot = document.querySelector('#modal-root');
+
 const ModalHandler = ({ largeImageURL, id }) => {
   const classes = useStyles();
-  return (
+
+  return createPortal(
     <div className={classes.Overlay}>
       <div className={classes.Modal}>
         <img src={largeImageURL} alt="" id={id} />
       </div>
-    </div>
+    </div>,
+    modalRoot,
   );
 };
 

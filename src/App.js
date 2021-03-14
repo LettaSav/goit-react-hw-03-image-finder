@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import './style.css';
 import React from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -71,6 +72,8 @@ function App() {
       setShowModal(false);
     }
   }
+  window.addEventListener('keydown', handleCancelModal);
+
   const toggleModal = () => {
     setShowModal(!showModal);
   };
